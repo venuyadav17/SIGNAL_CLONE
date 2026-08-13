@@ -1,0 +1,14 @@
+node_modules/
+.npm-cache/
+.next/
+out/
+dist/
+.env
+.env.local
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+backend/secure_messaging.db
+.pytest_cache/
