@@ -20,15 +20,32 @@ class UserPublic(UserBase):
 
 
 class RegisterRequest(BaseModel):
-    username: str = Field(min_length=2, max_length=50)
-    phone: str | None = Field(default=None, max_length=30)
-    display_name: str = Field(min_length=1, max_length=100)
-    otp: str
+    username: str = Field(
+        min_length=2,
+        max_length=50,
+    )
+
+    phone: str | None = Field(
+        default=None,
+        max_length=30,
+    )
+
+    password: str = Field(
+        min_length=6,
+        max_length=128,
+    )
 
 
 class LoginRequest(BaseModel):
-    username: str = Field(min_length=2, max_length=50)
-    otp: str
+    username: str = Field(
+        min_length=2,
+        max_length=50,
+    )
+
+    password: str = Field(
+        min_length=6,
+        max_length=128,
+    )
 
 
 class AuthResponse(BaseModel):
@@ -70,7 +87,9 @@ class ConversationResponse(BaseModel):
     name: str
     created_at: datetime
     updated_at: datetime
-    members: list[ConversationMemberResponse] = []
+    members: list[ConversationMemberResponse] = Field(
+        default_factory=list
+    )
     latest_message: MessageResponse | None = None
     unread_count: int = 0
 
@@ -82,12 +101,21 @@ class DirectConversationRequest(BaseModel):
 
 
 class GroupConversationRequest(BaseModel):
-    name: str = Field(min_length=1, max_length=120)
-    member_ids: list[int] = Field(default_factory=list)
+    name: str = Field(
+        min_length=1,
+        max_length=120,
+    )
+
+    member_ids: list[int] = Field(
+        default_factory=list
+    )
 
 
 class MessageCreateRequest(BaseModel):
-    content: str = Field(min_length=1, max_length=4000)
+    content: str = Field(
+        min_length=1,
+        max_length=4000,
+    )
 
 
 class AddMemberRequest(BaseModel):

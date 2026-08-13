@@ -32,7 +32,11 @@ export type Message = {
   conversation_id: number;
   sender_id: number;
   content: string;
-  status: "sending" | "sent" | "delivered" | "read";
+  status:
+    | "sending"
+    | "sent"
+    | "delivered"
+    | "read";
   created_at: string;
 };
 
@@ -48,8 +52,25 @@ export type Conversation = {
 };
 
 export type SocketEvent =
-  | { type: "message"; message: Message }
-  | { type: "typing"; user_id: number; is_typing: boolean }
-  | { type: "read"; message_id: number }
-  | { type: "presence"; user_id: number; online: boolean }
-  | { type: "error"; detail: string };
+  | {
+      type: "message";
+      message: Message;
+    }
+  | {
+      type: "typing";
+      user_id: number;
+      is_typing: boolean;
+    }
+  | {
+      type: "read";
+      message_id: number;
+    }
+  | {
+      type: "presence";
+      user_id: number;
+      online: boolean;
+    }
+  | {
+      type: "error";
+      detail: string;
+    };
